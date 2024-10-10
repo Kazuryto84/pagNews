@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import { Suspense } from 'react';
+import Home from './routes/home/Home';
+import Story from './routes/story/Story';
+import User from './routes/user/User';
+import Send from './routes/send/send.component';
+import Edit from './routes/edit/edit.component';
+import Authentication from './routes/authentication/Authentication';
+import Navigation from './routes/navigation/Navigation';
+import { Routes, Route } from 'react-router-dom';
+import SpinnerComponent from './components/spinner/spinner.component';
 
-function App() {
+const App = () => {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    <Suspense fallback={<SpinnerComponent /> }>
+      <Routes>
+        <Route path="/" element={<Navigation/>}>
+        <Route path='queue' element={<Home/>}/>
+        <Route path='story/:id' element={<Story/>}/>
+        <Route path='send' element={<Send/>}/>
+        <Route path='story/edit/:id' element={<Edit/>}/>
+        <Route path='user/:username' element={<User/>}/>
+        <Route path='auth' element={<Authentication/>}/>
+
+        </Route>
+      </Routes>
+    </Suspense>
+  )
+};
 
 export default App;

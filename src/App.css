@@ -36,3 +36,9 @@
     transform: rotate(360deg);
   }
 }
+
+.logo-image {
+  width: 500px; /* Ajusta el ancho de la imagen */
+  height: auto; /* Mantiene la proporción de la imagen */
+  border: 2px solid #000; /* Añade un borde negro */
+}
